@@ -30,6 +30,8 @@ package main
 
 import "github.com/servian/TechChallengeApp/cmd"
 
+
+
 func main() {
 	cmd.Execute()
 }
