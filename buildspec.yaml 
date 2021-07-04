@@ -23,6 +23,6 @@ phases:
 
 artifacts:
   files:
-    - buildspec.yml
+    - buildspec.yaml
     - config/*
       
