@@ -4,7 +4,7 @@ phases:
 
   install: 
     commands:
-      - go get -u github.com/progamm/TechChallengeApp
+      - go get -u github.com/golang/lint/golint
 
   pre_build: 
     commands:
@@ -23,9 +23,6 @@ phases:
 
 artifacts:
   files:
-    - app
-    - appspec.yml
     - buildspec.yml
     - config/*
-    - codedeploy/*
-    - cloudformation/*
+      
