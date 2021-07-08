@@ -4,7 +4,7 @@ phases:
 
   install: 
     commands:
-      - go get -u https://github.com/servian/TechChallengeApp.git
+      - go get -u
 
   pre_build: 
     commands:
@@ -29,3 +29,4 @@ artifacts:
     - config/*
     - codedeploy/*
     - cloudformation/*
+
