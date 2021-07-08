@@ -1,4 +1,3 @@
-
 version: 0.1
             
 phases:
@@ -24,4 +23,9 @@ phases:
 
 artifacts:
   files:
-        - '**/*'
+    - app
+    - appspec.yml
+    - buildspec.yml
+    - config/*
+    - codedeploy/*
+    - cloudformation/*
