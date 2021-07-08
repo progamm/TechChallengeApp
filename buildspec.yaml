@@ -1,15 +1,31 @@
-version: 0.2
-
+version: 0.1
+            
 phases:
-  pre_build:
+
+  install: 
     commands:
-      - npm install
+      - go get -u https://github.com/servian/TechChallengeApp.git
+
+  pre_build: 
+    commands:
+
+      # Ensure code passes all lint tests
+      - golint -set_exit_status
+
+      # Run all tests included with our application
+      - go test
+
   build:
     commands:
-      - npm run build
+
+      # Build our application
+      - go build -o app
 
 artifacts:
   files:
-    - '**/*'
-  discard-paths: no
-  base-directory: build
+    - app
+    - appspec.yml
+    - buildspec.yml
+    - config/*
+    - codedeploy/*
+    - cloudformation/*
