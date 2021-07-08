@@ -1,31 +1,16 @@
-version: 0.1
-            
-phases:
-
-  install: 
-    commands:
-      - go get -u https://github.com/progamm/TechChallengeApp
-
-  pre_build: 
-    commands:
-
-      # Ensure code passes all lint tests
-      - golint -set_exit_status
-
-      # Run all tests included with our application
-      - go test
-
-  build:
-    commands:
-
-      # Build our application
-      - go build -o app
-
-artifacts:
-  files:
-    - app
-    - appspec.yml
-    - buildspec.yml
-    - config/*
-    - codedeploy/*
-    - cloudformation/*
+version: 0.0
+environment_variables:
+    plaintext:
+        "INPUT_FILE": "serverless.yml"
+        "S3_BUCKET": ""
+containers:
+    LambdaFunctions:
+        phases:
+            during_build:
+                commands:
+                    - npm install
+                    - aws cloudformation package --template $INPUT_FILE --s3-bucket $S3_BUCKET --output-template post-saml.yaml
+        artifacts:
+            files:
+                - post-saml.yaml
+                - beta.json
