@@ -1,32 +1,21 @@
-version: 0.1
-            
-phases:
+version: 0.2
 
+phases:
   install: 
     commands:
-      - go get -u
-
-  pre_build: 
-    commands:
-
-      # Ensure code passes all lint tests
-      - golint -set_exit_status
-
-      # Run all tests included with our application
-      - go test
-
+      - echo CODEBUILD_SRC_DIR - $CODEBUILD_SRC_DIR
+      - echo GOPATH - $GOPATH
+      - echo GOROOT - $GOROOT
   build:
     commands:
-
-      # Build our application
-      - go build -o app
-
+      - echo Build started on `date`
+      - echo Getting packages
+      - go get ./...
+      - echo Compiling the Go code...
+      - go build -o app main.go
+  post_build:
+    commands:
+      - echo Build completed on `date`
 artifacts:
   files:
-    - app
-    - appspec.yml
-    - buildspec.yml
-    - config/*
-    - codedeploy/*
-    - cloudformation/*
-
+    - "**/*"
