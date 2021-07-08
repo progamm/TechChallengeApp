@@ -5,7 +5,7 @@ phases:
 
   install: 
     commands:
-      - go get https://github.com/progamm/TechChallengeApp.git
+      - go get github.com/progamm/TechChallengeApp.git
 
   pre_build: 
     commands:
