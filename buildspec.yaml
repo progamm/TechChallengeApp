@@ -1,17 +1,27 @@
---- 
-artifacts: 
-  files: 
-    - "**/*"
-phases: 
-  build: 
-    commands: 
-      - "go build -o app"
-  install: 
-    commands: 
-      - "go get -d https://github.com/progamm/TechChallengeApp"
-  pre_build: 
-    commands: 
-      - "golint -set_exit_status"
-      - "go test"
+
 version: 0.1
-      
+            
+phases:
+
+  install: 
+    commands:
+      - go get -d https://github.com/progamm/TechChallengeApp
+
+  pre_build: 
+    commands:
+
+      # Ensure code passes all lint tests
+      - golint -set_exit_status
+
+      # Run all tests included with our application
+      - go test
+
+  build:
+    commands:
+
+      # Build our application
+      - go build -o app
+
+artifacts:
+  files:
+        - '**/*'
